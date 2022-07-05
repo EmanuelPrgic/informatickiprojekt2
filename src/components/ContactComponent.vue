@@ -42,10 +42,16 @@
         if(this.ime == '' || this.prezime == '' || this.email == '') {
           this.text = 'Neuspjesno!'
           this.color = 'red'
+          this.ime = ''
+          this.prezime = ''
+          this.email = ''
         }
         else {
           this.text = 'Uspjesno registrirano!'
           this.color = 'green'
+          this.ime = ''
+          this.prezime = ''
+          this.email = ''
         }
         this.snackbar = true
       }
