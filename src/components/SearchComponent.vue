@@ -2,6 +2,41 @@
   <div class="search">
     <v-container>
       <v-row>
+        <v-col xs="4"
+        sm="4"
+        md="5"
+        lg="6"
+        xl="7">
+          <v-text-field type="text" placeholder="Search..." v-model="input" filled dense     
+          label="Search"
+          append-icon="mdi-magnify"
+          @click:append="dohvatiAPI() ">
+          </v-text-field>
+        <v-menu>
+      <template v-slot:activator="{ on: menu, attrs }">
+        <v-tooltip bottom>
+          <template v-slot:activator="{ on: tooltip }">
+            <v-btn
+              color="primary"
+              dark
+              v-bind="attrs"
+              v-on="{ ...tooltip, ...menu }"
+            >
+            {{ name}}
+            </v-btn>
+          </template>
+          <span>Click</span>
+        </v-tooltip>
+      </template>
+      <v-list>
+        <v-list-item
+          v-for="(item, index) in items"
+          :key="index"
+        >
+          <v-list-item-title @click="changeType(item.value, item.title)">{{ item.title }}</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu></v-col>
         <v-col 
         xs="8"
         sm="8"
@@ -51,41 +86,6 @@
           </v-row>
           <br><br>
         </v-col>
-        <v-col xs="4"
-        sm="4"
-        md="5"
-        lg="6"
-        xl="7">
-          <v-text-field type="text" placeholder="Search..." v-model="input" filled dense     
-          label="Search"
-          append-icon="mdi-magnify"
-          @click:append="dohvatiAPI() ">
-          </v-text-field>
-        <v-menu>
-      <template v-slot:activator="{ on: menu, attrs }">
-        <v-tooltip bottom>
-          <template v-slot:activator="{ on: tooltip }">
-            <v-btn
-              color="primary"
-              dark
-              v-bind="attrs"
-              v-on="{ ...tooltip, ...menu }"
-            >
-            {{ name}}
-            </v-btn>
-          </template>
-          <span>Click</span>
-        </v-tooltip>
-      </template>
-      <v-list>
-        <v-list-item
-          v-for="(item, index) in items"
-          :key="index"
-        >
-          <v-list-item-title @click="changeType(item.value, item.title)">{{ item.title }}</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-menu></v-col>
       </v-row>
     </v-container>
   </div>
@@ -118,7 +118,7 @@ export default {
   }),
     methods: {
       dohvatiAPI: function() {
-        if(this.input != ""){
+        if(this.input != "" || this.forSearch != ''){
         this.axios.get("https://db.ygoprodeck.com/api/v7/cardinfo.php?" + this.forSearch + this.input + "&sort=type")
         .then(response => {
           this.cards = response.data.data

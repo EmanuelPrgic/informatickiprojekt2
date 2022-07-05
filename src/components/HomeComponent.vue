@@ -91,46 +91,45 @@
           </div>
 
           <div class="pt-16">
-            <h2 class="text-h4 font-weight-bold">Latest Posts</h2>
+            <h2 class="text-h4 font-weight-bold">Najnovije vijesti</h2>
             <div>
               <v-row v-for="i in latest" :key="i.id" class="py-4">
-                <v-col cols="12" md="4">
-                  <v-card flat height="100%" :href="i.route">
+                  <v-col cols="12" md="4">
+                    <v-card flat height="100%" :href="i.route">
                     <v-img
                         :aspect-ratio="16 / 9"
                         height="100%"
                         :src="i.image"
                     ></v-img>
-                  </v-card>
-                </v-col>
+                    </v-card>
+                  </v-col>
+                  <v-col>
+                    <div>
+                      <v-btn color="accent" depressed>{{i.tag}}</v-btn>
 
-                <v-col>
-                  <div>
-                    <v-btn color="accent" depressed :href="i.route">{{i.tag}}</v-btn>
+                      <h3 class="text-h4 font-weight-bold pt-3">
+                        {{i.title}}
+                      </h3>
 
-                    <h3 class="text-h4 font-weight-bold pt-3">
-                      {{i.title}}
-                    </h3>
+                      <p class="text-h6 font-weight-regular pt-3 text--secondary">
+                        {{i.desc}}
+                      </p>
 
-                    <p class="text-h6 font-weight-regular pt-3 text--secondary">
-                      {{i.desc}}
-                    </p>
+                      <div class="d-flex align-center">
+                        <v-avatar color="accent" size="36">
+                          <v-icon dark>mdi-feather</v-icon>
+                        </v-avatar>
 
-                    <div class="d-flex align-center">
-                      <v-avatar color="accent" size="36">
-                        <v-icon dark>mdi-feather</v-icon>
-                      </v-avatar>
-
-                      <div class="pl-2">{{i.date}} / {{i.author}}</div>
+                        <div class="pl-2">{{i.date}} / {{i.author}}</div>
+                      </div>
                     </div>
-                  </div>
-                </v-col>
+                    <v-btn class="mt-2" :href="i.route">Procitaj vise</v-btn>
+                  </v-col>
               </v-row>
             </div>
-          </div>
+        </div>
         </div>
       </v-col>
-
       <v-col>
         <div class="pt-16">
           <siderbar/>
