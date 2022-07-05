@@ -24,7 +24,7 @@
                   <v-icon large>mdi-feather</v-icon>
                 </v-avatar>
 
-                <div class="text-h6 pl-2">Neo Arkadia · July 4, 2022</div>
+                <div class="text-h6 pl-2">NeoArkadia · July 4, 2022</div>
               </v-col>
             </v-row>
           </v-card-text>
@@ -92,8 +92,8 @@
 
           <div class="pt-16">
             <h2 class="text-h4 font-weight-bold">Najnovije vijesti</h2>
-            <div>
-              <v-row v-for="i in latest" :key="i.id" class="py-4">
+            <div v-for="i in pageOfItems" :key="i.id" class="py-4">
+              <v-row>
                   <v-col cols="12" md="4">
                     <v-card flat height="100%" :href="i.route">
                     <v-img
@@ -127,6 +127,10 @@
                   </v-col>
               </v-row>
             </div>
+            <div class="card-footer pb-0 pt-3">
+            <jw-pagination :items="latest" @changePage="onChangePage"
+            pageSize="4"></jw-pagination>
+        </div>
         </div>
         </div>
       </v-col>
@@ -176,7 +180,12 @@ export default {
       { id: 2,  title: '[Rush Duel] Yu-Gi-Oh! Go Rush!! Sleeves', desc: 'Featuring the main characters of this first cour.', image: 'https://i0.wp.com/ygorganization.com/wp-content/uploads/2022/07/yuamusleeve.jpg?resize=480%2C445&ssl=1', tag: 'News', route: 'https://ygorganization.com/rush-duel-yu-gi-oh-go-rush-sleeves/', date: 'July 4, 2022', author: 'Ness'},
       { id: 3,  title: '[VJMP] Green Ninja', desc: 'You flip me right round, baby, like a card, baby. Right round. Right round.', image: 'https://i0.wp.com/ygorganization.com/wp-content/uploads/2022/07/FWjVnxzVUAEpBDM.png?w=256&ssl=1', tag: 'Promo & News', route: 'https://ygorganization.com/youshappaimerightround/', date: 'July 4, 2022', author: 'NeoArkadia'},
       { id: 4,  title: '[DABL] Red Cartesia, the Virtuous', desc: 'Could it really be her…?', image: 'https://i0.wp.com/ygorganization.com/wp-content/uploads/2022/07/FWk1YugUYAAgNZj.jpg?resize=800%2C445&ssl=1', tag: 'News', route: 'https://ygorganization.com/eventhewhitestpurestvirtuestainsred/', date: 'July 3, 2022', author: 'NeoArkadia'},
-    ],
+      { id: 5, title: 'Thousands Of Duelists Return To Duel At The 2022 European Yu-Gi-Oh! National Championships', desc: 'European Duelists have returned in their thousands to major in-person tournament events for the Yu-Gi-Oh! TRADING CARD GAME. The last month has seen National Championships held across Europe with many Duelists earning qualifications to the 2022 European Yu-Gi-Oh! Championship.', image: 'https://img.yugioh-card.com/ygo_cms/ygo/all/uploads/YGO-Nationals-2022-logo_1080x1080-e1650554369442.png', tag: 'News', route: 'https://img.yugioh-card.com/oc/news/detail.php?id=12758', date: 'June 22, 2022', author: 'Konami'},
+      { id: 6, title: 'Summary of PSCT', desc: 'PSCT (Problem-Solving Card Text) is the term used for the way Konami has written card texts since 2011. It encodes key information about card effects, meaning that they can now be deduced from the card text itself with a little knowledge.', image: 'https://i.ytimg.com/vi/GUm-P0LZgco/mqdefault.jpg', tag: 'Rulings', route: 'https://ygorganization.com/summary-of-psct/', date: 'August 29, 2015', author: 'bilaterus'},
+      { id: 7, title: '[SD44] Complete Set List!', desc: 'It’s time to unleash the latest chapter of the legend of the crystals!', image: 'https://i0.wp.com/ygorganization.com/wp-content/uploads/2022/06/525f3829.jpg?resize=800%2C400&ssl=1', tag: 'Set Spoilers', route: 'https://ygorganization.com/sd44-complete-set-list/', date: 'June 23, 2022', author: 'NeoArkadia'},
+      { id: 8, title: '[RD/KP10] Eclipse', desc: 'Actually surprised we didn’t have a card simply named like that before.', image: 'https://i0.wp.com/ygorganization.com/wp-content/uploads/2022/06/eclipsethumb.png?resize=500%2C445&ssl=1', tag: 'Set Spoilers', route: 'https://ygorganization.com/rd-kp10-eclipse/', date: 'June 25, 2022', author: 'Ness'},
+    
+    ],  
     forYou: [
       {id: 1, title: 'Creative Deck Profile: 60-card Outstanding Labrynth Exchange with the Entity and the Burning Abyss', desc: 'Mouthful of a title means many different themes will appear!', image: 'https://i0.wp.com/ygorganization.com/wp-content/uploads/2022/06/CDBanner_Labrynth60_Small.png?w=450&ssl=1', tag: 'Decklists', route: 'https://ygorganization.com/cdp_labrynth60/', date: 'July 4, 2022', author: 'Quincymccoy'},
       {id: 2, title: 'Creative Deck Profile: Byssted Branded, the Danger!s of Super Rejuvenation, ft. DABL Support', desc: 'Chaos Dragons return with Byssted Fury!', image: 'https://i0.wp.com/ygorganization.com/wp-content/uploads/2022/07/CDBanner_BysstedBranded_Small.png?w=450&ssl=1', tag: 'Casual Decklist', route: 'https://ygorganization.com/cdp_bysstedbranded/', date: 'July 2, 2022', author: 'Quincymccoy'},
